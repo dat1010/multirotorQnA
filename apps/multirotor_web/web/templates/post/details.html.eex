@@ -1,0 +1,2 @@
+<h1><%= @posts.title %><small><%= @posts.body %></small></h1>
+<h3><%= format_date(@posts.date) %></h3>
