@@ -1,16 +1,7 @@
 <h1> All Questions</h1>
+<%= render MultirotorWeb.SharedView, "count.html", list: @posts %>
 <div class="list-group">
   <%= for p <- @posts do %>
-    <a href="posts/<%= p.id %>">
-      <div class="list-group-item">
-        <h4 class="list-group-item-heading"><%= p.title %></h4>
-        <span>
-          <span class="text-muted"><%= p.body %></span>
-          <span class="pull-right">
-            <strong><%= format_date p.date %></strong>
-          </span>
-        </span>
-      </div>
-    </a>
+    <%= render "summary.html", post: p %>
   <% end %>
 </div>
