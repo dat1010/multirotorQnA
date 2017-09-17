@@ -1,0 +1,14 @@
+<h1> Ask Question </h1>
+<%= form_for @changeset, post_path(@conn, :add), fn f -> %>
+  <div class="form-group" >
+    <%= label f, :title, "Title" %>
+    <%= text_input f, :title, class: "form-control"%>
+  </div>
+
+  <div class="form-group" >
+    <%= label f, :body, "Question" %>
+    <%= textarea f, :body, class: "form-control", rows: 8 %>  
+  </div>
+
+  <%= submit "Post Question", class: "btn btn-primary pull-right"%>
+<% end %>
