@@ -18,7 +18,13 @@ defmodule MultirotorWeb.Router do
 
     get "/", PageController, :index
     get "/posts", PostController, :list
+    get "/posts/new", PostController, :create 
+    post "/posts/new", PostController, :add
     get "/posts/:id", PostController, :show
+
+    get "/login", LoginController, :index
+    post "/login", LoginController, :login
+
   end
 
   # Other scopes may use custom stacks.

@@ -3,12 +3,16 @@
   <div class="form-group" >
     <%= label f, :title, "Title" %>
     <%= text_input f, :title, class: "form-control"%>
+    <%= error_tag f, :title %>
   </div>
 
   <div class="form-group" >
     <%= label f, :body, "Question" %>
     <%= textarea f, :body, class: "form-control", rows: 8 %>  
+    <%= error_tag f, :body %>
   </div>
+
+  <%= #TODO need to come back and add missing optional fields %>
 
   <%= submit "Post Question", class: "btn btn-primary pull-right"%>
 <% end %>

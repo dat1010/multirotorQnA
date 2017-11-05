@@ -23,7 +23,7 @@ defmodule Multirotor.PostQueries do
   end
 
   def create(post) do
-    Repo.insert!(post)
+    Repo.insert(post)
   end
 
 end

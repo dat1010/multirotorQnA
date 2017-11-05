@@ -42,6 +42,7 @@ defmodule MultirotorWeb.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
+      {:phoenix_ecto, "~> 3.3"},
       {:multirotor, in_umbrella: true}
     ]
   end

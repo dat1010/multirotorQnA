@@ -13,4 +13,31 @@ defmodule MultirotorWeb.PostController do
   end
 
 
+  def create(conn, %{errors: errors}) do
+    render conn, "create.html", changeset: errors
+  end
+
+  def create(conn, _params) do
+    changeset = Multirotor.Posts.changeset(%Multirotor.Posts{}, %{})
+    render conn, "create.html", changeset: changeset
+  end
+
+  def add(conn, %{"posts" => posts}) do
+    #posts = Map.put(posts, :date, "2017-08-31 09:00:00") 
+
+    #Need to find a better way to do this. Maybe a function
+    posts = Map.put(posts, "date", Ecto.DateTime.utc) 
+    posts = Map.put(posts, "type", 1)
+    posts = Map.put(posts, "userid", 1010101)
+    
+    changeset = Multirotor.Posts.changeset(%Multirotor.Posts{}, posts)
+
+    case Multirotor.PostQueries.create changeset do
+      {:ok, %{id: id}} -> redirect conn, to: post_path(conn, :show, id)
+      {:error, reasons} -> create conn, %{errors: reasons}
+    end
+  end
+
+ 
+
 end

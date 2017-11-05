@@ -1,7 +1,8 @@
 <h1> All Questions</h1>
+<a href="<%= post_path(@conn, :create) %>" class="btn btn-primary pull-right">Ask Question</a>
 <%= render MultirotorWeb.SharedView, "count.html", list: @posts %>
 <div class="list-group">
   <%= for p <- @posts do %>
-    <%= render "summary.html", post: p %>
+    <%= render "summary.html", post: p, conn: @conn %>
   <% end %>
 </div>
