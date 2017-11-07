@@ -1,6 +1,10 @@
 defmodule MultirotorWeb.PostController do
   use MultirotorWeb.Web, :controller
 
+  # This is just an example of using plugs. With
+  # a parameter.
+  plug MultirotorWeb.AuthorizedPlug, "create" when action in [:create]
+
   def show(conn, %{"id" => id}) do
     post = Multirotor.PostQueries.get_by_id(id)
     |> IO.inspect()

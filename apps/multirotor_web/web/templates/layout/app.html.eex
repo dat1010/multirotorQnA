@@ -15,7 +15,7 @@
     <ul class="nav nav-pills col-xs-offset-7">
       <li><a href="/">Home</a></li>
       <li><a href="<%= post_path(@conn, :list) %>">Events</a></li>
-      <li><a href="<%= login_path(@conn, :list) %>">Login</a></li>
+      <li><a href="<%= login_path(@conn, :index) %>">Login</a></li>
     </ul>
                           
     <div class="container">
