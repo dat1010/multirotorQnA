@@ -42,6 +42,11 @@ defmodule MultirotorWeb.PostController do
     end
   end
 
+  def reserve(conn, %{"id" => id, "reservation" => %{"quantity" => quantity}}) do
+    {:ok, post} = Multirotor.PostQueries.decrease_quantity(id, quantity)
+    Multirotor.PostChannel.send_update(post)
+    redirect conn, to: post_path(conn, :show, id)
+  end
  
 
 end

@@ -4,6 +4,8 @@ defmodule MultirotorWeb.UserSocket do
   ## Channels
   # channel "room:*", MultirotorWeb.RoomChannel
 
+  channel "post:*", Multirotor.PostChannel
+
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
   # transport :longpoll, Phoenix.Transports.LongPoll

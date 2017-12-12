@@ -22,6 +22,7 @@ defmodule MultirotorWeb.Router do
     get "/posts/new", PostController, :create 
     post "/posts/new", PostController, :add
     get "/posts/:id", PostController, :show
+    post "posts/:id/reserve", PostController, :reserve
 
     get "/login", LoginController, :index
     post "/login", LoginController, :login

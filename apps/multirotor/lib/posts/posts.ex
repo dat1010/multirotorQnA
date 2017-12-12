@@ -11,6 +11,7 @@ defmodule Multirotor.Posts do
     field :views, :integer, default: 0
     field :userid, :integer
     field :type, :integer
+    field :quantity_available, :integer, default: 25
 
     timestamps
   end

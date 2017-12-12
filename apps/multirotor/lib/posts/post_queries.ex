@@ -26,4 +26,12 @@ defmodule Multirotor.PostQueries do
     Repo.insert(post)
   end
 
+
+  def decrease_quantity(id, quantity) do
+    post = Repo.get!(Posts, id)
+    changes = Ecto.Changeset.change post, quantity_available:
+    post.quantity_available - String.to_integer(quantity)
+    Repo.update changes
+  end
+
 end

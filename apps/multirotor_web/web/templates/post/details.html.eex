@@ -1,2 +1,17 @@
 <h1><%= @posts.title %><small><%= @posts.body %></small></h1>
 <h3><%= format_date(@posts.date) %></h3>
+
+<h4>Available Spots: <span class="quantity"><%= @posts.quantity_available %></span></h4>
+
+<%= form_for @conn, post_path(@conn, :reserve, @posts.id), [as: :reservation, class: "form-inline"], fn f -> %>
+
+  <div class="form-group">
+    <%= label f, :quantity, "Quantity" %>
+    <%= number_input f, :quantity, class: "form-control", min: 1 %>
+  </div>
+
+  <%= submit "Reserve", class: "btn btn-primary pull-right" %>
+
+<% end %>
+
+<span id="id" data-id="<%= @posts.id %></span>
