@@ -18,7 +18,7 @@ defmodule MultirotorUsers.Mixfile do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger, :postgrex, :ecto],
+      extra_applications: [:logger, :postgrex, :ecto, :ueberauth, :ueberauth_identity],
       mod: {MultirotorUsers.Application, []}
     ]
   end
@@ -30,7 +30,9 @@ defmodule MultirotorUsers.Mixfile do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       # {:sibling_app_in_umbrella, in_umbrella: true},
       {:ecto, "~> 2.2"},
-      {:postgrex, "~> 0.13.3"}
+      {:postgrex, "~> 0.13.3"},
+      {:ueberauth, "~> 0.5.0"},
+      {:ueberauth_identity, "~> 0.2.3"}
     ]
   end
 end

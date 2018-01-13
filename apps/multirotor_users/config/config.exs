@@ -35,3 +35,14 @@ config :multirotor_users, MultirotorUsers.Repo,
     password: "sk8ing4ever"
 
 config :multirotor_users, ecto_repos: [MultirotorUsers.Repo]
+
+config :ueberauth, Ueberauth,
+  providers: [
+        identity: { Ueberauth.Strategy.Identity, [
+                  callback_methods: ["POST"],
+                  uid_field: :email,
+                  nickname_field: :email,
+                  request_path: "/sessions/new",
+                  callback_path: "/sessions/identity/callback",
+                ]}
+      ]
