@@ -25,8 +25,9 @@ defmodule MultirotorWeb.Router do
 
     get "/login", LoginController, :index
     post "/login", LoginController, :login
-    get "/createuser", CreateUserController, :createuser
-
+    get "/user", UserController, :show
+    get "/user/new", UserController, :create
+    get "/user/new", UserController, :add
   end
 
 

@@ -20,11 +20,6 @@
                           
     <div class="container">
       <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
         <span class="logo"></span>
         <%= if @conn.cookies["user_name"] do %>
           <span>
@@ -32,9 +27,6 @@
           </span>
         <% end %>
       </header>
-
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
