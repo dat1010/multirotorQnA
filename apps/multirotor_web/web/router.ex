@@ -27,6 +27,7 @@ defmodule MultirotorWeb.Router do
     post "/login", LoginController, :login
     get "/user", UserController, :show
     get "/user/new", UserController, :create
+    post "/user/new", UserController, :add
     get "/user/new", UserController, :add
   end
 
