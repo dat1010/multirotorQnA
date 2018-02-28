@@ -18,7 +18,7 @@ defmodule MultirotorUsers.Mixfile do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger, :postgrex, :ecto, :ueberauth, :ueberauth_identity],
+      extra_applications: [:logger, :postgrex, :ecto, :ueberauth, :ueberauth_identity, :comeonin, :bcrypt_elixir],
       mod: {MultirotorUsers.Application, []}
     ]
   end
@@ -32,7 +32,9 @@ defmodule MultirotorUsers.Mixfile do
       {:ecto, "~> 2.2"},
       {:postgrex, "~> 0.13.3"},
       {:ueberauth, "~> 0.5.0"},
-      {:ueberauth_identity, "~> 0.2.3"}
+      {:ueberauth_identity, "~> 0.2.3"},
+      {:comeonin, "~> 4.1"},
+      {:bcrypt_elixir, "~> 1.0"}
     ]
   end
 end

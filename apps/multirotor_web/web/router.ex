@@ -31,6 +31,13 @@ defmodule MultirotorWeb.Router do
     get "/user/new", UserController, :add
   end
 
+  scope "/sessions", MultirotorWeb do
+    pipe_through [:browser]
+    get "/new", SessionsController, :new
+    post "/identity/callback", SessionsController,  
+                                     :identity_callback
+  end
+
 
   # Other scopes may use custom stacks.
   # scope "/api", MultirotorWeb do

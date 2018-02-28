@@ -23,7 +23,7 @@ defmodule MultirotorWeb.Mixfile do
   def application do
     [
       mod: {MultirotorWeb, []},
-      extra_applications: [:logger, :multirotor]
+      extra_applications: [:logger, :multirotor, :ueberauth, :ueberauth_identity]
     ]
   end
 
@@ -44,7 +44,9 @@ defmodule MultirotorWeb.Mixfile do
       {:cowboy, "~> 1.0"},
       {:phoenix_ecto, "~> 3.3"},
       {:multirotor, in_umbrella: true},
-      {:multirotor_users, in_umbrella: true}
+      {:multirotor_users, in_umbrella: true},
+      {:ueberauth, "~> 0.5.0"},
+      {:ueberauth_identity, "~> 0.2.3"}
     ]
   end
 end
