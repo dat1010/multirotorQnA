@@ -11,4 +11,12 @@ defmodule MultirotorUsers.UserQueries do
     Repo.insert(user)
   end
 
+  def get_by_email(email) do
+    query = from u in Users,
+            where: u.email == ^email
+    Repo.all(query)
+  end
+
+
+
 end

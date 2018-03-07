@@ -2,7 +2,7 @@ defmodule MultirotorWeb.UserController do
   use MultirotorWeb.Web, :controller
 
   def show(conn, _params) do
-    #text conn, "create  "
+    #text conn, "create"
     render conn, "user.html"
   end 
 

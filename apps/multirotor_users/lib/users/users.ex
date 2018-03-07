@@ -4,26 +4,25 @@ defmodule MultirotorUsers.Users do
   import Ecto.Changeset
 
   alias Ueberauth.Auth
-  alias Comeonin.Bcrypt
 
   schema "users" do
     field :name, :string
     field :email, :string
-    field :salt, :string
     field :password, :string
+    field :password_hash, :string
 
     timestamps()
   end
 
   def authenticate(%Auth{provider: :identity} = auth) do
-    Repo.get_by(__MODULE__, email: auth.uid)
-    |> Comeonin.Bcrypt.authorize(auth)
+    #Repo.get(__MODULE__, email: auth.uid)
+    MultirotorUsers.UserQueries.get_by_email(auth.uid)
+    |> Comeonin.Bcrypt.check_pass(Map.get(auth.extra,"password"))
   end
 
   def changeset(user, params \\ %{}) do
     user
-    |> cast(params, [:name, :email, :salt, :password])
-    |> validate_password(:password)
+    |> cast(params, [:name, :email, :password])
     |> put_pass_hash()
   end
 
@@ -36,9 +35,8 @@ defmodule MultirotorUsers.Users do
     end)
   end
 
-  defp put_pass_hash(%Ecto.Changeset{valid?: true, changes:
-    %{password: password}} = changeset) do
-      change(changeset, Comeonin.Bcrypt.add_hash(password))
+  defp put_pass_hash(%{valid?: true, changes: %{password: password}} = changeset) do
+    change(changeset, Comeonin.Bcrypt.add_hash(password))
   end
   defp put_pass_hash(changeset), do: changeset
 

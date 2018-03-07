@@ -10,7 +10,7 @@ defmodule MultirotorWeb.SessionsController do
 
   def identity_callback(%{assigns: %{ueberauth_auth: auth}} = conn, _) do
     conn
-    |> authenticated(User.authenticate auth)
+    |> authenticated(MultirotorUsers.Users.authenticate auth)
   end
 
   defp authenticated(conn, {:ok, user}) do
