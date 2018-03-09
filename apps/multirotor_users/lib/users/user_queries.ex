@@ -12,9 +12,7 @@ defmodule MultirotorUsers.UserQueries do
   end
 
   def get_by_email(email) do
-    query = from u in Users,
-            where: u.email == ^email
-    Repo.all(query)
+    Repo.get_by(Users, email: email)
   end
 
 

@@ -16,7 +16,7 @@ defmodule MultirotorWeb.SessionsController do
   defp authenticated(conn, {:ok, user}) do
     conn
     |> put_flash(:info, "Successfully authenticated.")
-    |> Plug.put_session(:current_user, user)
+    |> put_session(:current_user, user)
     |> redirect(to: "/")
   end
 

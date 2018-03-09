@@ -15,9 +15,10 @@ defmodule MultirotorUsers.Users do
   end
 
   def authenticate(%Auth{provider: :identity} = auth) do
-    #Repo.get(__MODULE__, email: auth.uid)
+    #require IEx;
+    #IEx.pry
     MultirotorUsers.UserQueries.get_by_email(auth.uid)
-    |> Comeonin.Bcrypt.check_pass(Map.get(auth.extra,"password"))
+    |> Comeonin.Bcrypt.check_pass(Map.get(auth.extra.raw_info,"password"))
   end
 
   def changeset(user, params \\ %{}) do
