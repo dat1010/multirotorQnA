@@ -25,7 +25,17 @@ defmodule MultirotorWeb.Router do
 
     get "/login", LoginController, :index
     post "/login", LoginController, :login
+    get "/user", UserController, :show
+    get "/user/new", UserController, :create
+    post "/user/new", UserController, :add
+    get "/user/new", UserController, :add
+  end
 
+  scope "/sessions", MultirotorWeb do
+    pipe_through [:browser]
+    get "/new", SessionsController, :new
+    post "/identity/callback", SessionsController,  
+                                     :identity_callback
   end
 
 
