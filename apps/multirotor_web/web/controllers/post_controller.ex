@@ -7,7 +7,6 @@ defmodule MultirotorWeb.PostController do
 
   def show(conn, %{"id" => id}) do
     post = Multirotor.PostQueries.get_by_id(id)
-    |> IO.inspect()
     render conn, "details.html", posts: post
   end
 
