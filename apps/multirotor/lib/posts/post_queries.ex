@@ -11,6 +11,12 @@ defmodule Multirotor.PostQueries do
     Repo.all(from Posts)
   end
 
+  def get_top(count) do
+    query = from p in Posts,
+            order_by: [desc: :inserted_at], limit: ^count
+    Repo.all(query)
+  end
+
   def get_all_by_userid(userid) do
     query = from p in Posts,
             where: p.userid == ^userid
