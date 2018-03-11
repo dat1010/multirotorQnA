@@ -3,6 +3,6 @@
 <%= render MultirotorWeb.SharedView, "count.html", list: @posts %>
 <div class="list-group">
   <%= for p <- @posts do %>
-    <%= render "summary.html", post: p, conn: @conn %>
+    <%= render MultirotorWeb.SharedView, "summary.html", post: p, conn: @conn %>
   <% end %>
 </div>
