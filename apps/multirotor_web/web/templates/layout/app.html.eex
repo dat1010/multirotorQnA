@@ -16,6 +16,7 @@
       <li><a href="/">Home</a></li>
       <li><a href="<%= post_path(@conn, :list) %>">Questions</a></li>
       <li><a href="/sessions/new">Login</a></li>
+      <li><a href="<%= user_path(@conn, :add) %>">Sign Up</a></li>
     </ul>
                           
     <div class="container">
