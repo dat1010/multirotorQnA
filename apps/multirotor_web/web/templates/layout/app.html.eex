@@ -15,15 +15,15 @@
     <ul class="nav nav-pills col-xs-offset-7">
       <li><a href="/">Home</a></li>
       <li><a href="<%= post_path(@conn, :list) %>">Questions</a></li>
-      <li><a href="<%= login_path(@conn, :index) %>">Login</a></li>
+      <li><a href="/sessions/new">Login</a></li>
     </ul>
                           
     <div class="container">
       <header class="header">
         <span class="logo"></span>
-        <%= if @conn.cookies["user_name"] do %>
+        <%= if @conn.cookies["current_user"] do %>
           <span>
-            hello, <%= @conn.cookies["user_name"] %>
+            hello, <%= @conn.cookies["current_user"] %>
           </span>
         <% end %>
       </header>

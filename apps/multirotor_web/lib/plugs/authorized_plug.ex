@@ -6,22 +6,25 @@ defmodule MultirotorWeb.AuthorizedPlug do
     opts
   end
 
-  def call(conn, name) do 
-    user_name = conn.cookies["user_name"]
-
-    authorize_user(conn, user_name, name)
+  def call(conn, _) do 
+    current_user = get_session(conn, :current_user)
+    authorize_user(conn, current_user)
   end
 
 
-  defp authorize_user(conn, nil, _) do
+  defp authorize_user(conn, nil) do
     conn
-    |> redirect(to: "/login")
+    |> redirect(to: "/sessions/new")
     |> halt
   end
-  
-  defp authorize_user(conn, user_name, name) when user_name === name do
+
+  defp authorize_user(conn,_) do
     conn
   end
+  
+  #defp authorize_user(conn, user_name, name) when user_name === name do
+  #  conn
+  #end
 
-  defp authorize_user(conn, _, _), do: authorize_user(conn, nil, nil)
+  #defp authorize_user(conn, _, _), do: authorize_user(conn, nil, nil)
 end

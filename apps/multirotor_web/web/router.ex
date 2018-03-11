@@ -18,18 +18,16 @@ defmodule MultirotorWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/posts", PostController, :list
-    get "/posts/new", PostController, :create 
-    post "/posts/new", PostController, :add
-    get "/posts/:id", PostController, :show
+    get "posts/", PostController, :list
+    get "post/new", PostController, :create 
+    post "posts/new", PostController, :add
+    get "posts/:id", PostController, :show
 
-    get "/login", LoginController, :index
-    post "/login", LoginController, :login
+
     get "/user", UserController, :show
     get "/user/new", UserController, :create
     post "/user/new", UserController, :add
     get "/user/new", UserController, :add
-    #
   end
 
   scope "/sessions", MultirotorWeb do
@@ -38,7 +36,6 @@ defmodule MultirotorWeb.Router do
     post "/identity/callback", SessionsController,  
                                      :identity_callback
   end
-
 
   # Other scopes may use custom stacks.
   # scope "/api", MultirotorWeb do
