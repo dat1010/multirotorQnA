@@ -29,6 +29,7 @@ defmodule MultirotorWeb.Router do
     get "/user/new", UserController, :create
     post "/user/new", UserController, :add
     get "/user/new", UserController, :add
+    #
   end
 
   scope "/sessions", MultirotorWeb do
