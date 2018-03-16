@@ -5,4 +5,3 @@
 1. You can create an account and ask drone questions
 2. View questions with or with out an account.
 
-

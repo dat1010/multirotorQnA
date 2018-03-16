@@ -12,21 +12,23 @@
   </head>
 
   <body>
-    <ul class="nav nav-pills col-xs-offset-7">
-      <li><a href="/">Home</a></li>
-      <li><a href="<%= post_path(@conn, :list) %>">Questions</a></li>
-      <li><a href="/sessions/new">Login</a></li>
-      <li><a href="<%= user_path(@conn, :add) %>">Sign Up</a></li>
+    <div class="container">
+      <ul class="nav nav-pills">
+        <li><a href="/">Home</a></li>
+        <li><a href="<%= post_path(@conn, :list) %>">Questions</a></li>
+        <%= if Plug.Conn.get_session(@conn, :current_user) do %>
+            <li><a href="/user">Profile</a></li>
+            <li><a href="">Logout</a></li>
+        <% else %>                  
+          <li><a href="/sessions/new">Login</a></li>
+          <li><a href="<%= user_path(@conn, :add) %>">Sign Up</a></li>
+        <% end %>
     </ul>
-                          
+    </div>
+                              
     <div class="container">
       <header class="header">
         <span class="logo"></span>
-        <%= if @conn.cookies["current_user"] do %>
-          <span>
-            hello, <%= @conn.cookies["current_user"] %>
-          </span>
-        <% end %>
       </header>
 
       <main role="main">

@@ -1,9 +1,8 @@
 <div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: "MultirotorWeb!" %></h2>
-  <p class="lead">Ask as you will receive.<br/>This is a drone QnA forum where as a community we can ask and answer each others questions.</p>
+  <h2>MultirotorQnA</h2>
+  <p class="lead">Ask and you will receive.<br/>This is a drone QnA forum where as a community we can ask and answer each others questions.</p>
 </div>
 
-<h2>100 Recent Questions</h2>
 <div class="list-group">
   <%= for p <- @posts do %>
     <%= render MultirotorWeb.SharedView, "summary.html", post: p, conn: @conn %>
