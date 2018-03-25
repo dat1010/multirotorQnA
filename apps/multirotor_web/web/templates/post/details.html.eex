@@ -1,2 +1,20 @@
-<h1><%= @posts.title %><small><%= @posts.body %></small></h1>
-<h3><%= MultirotorWeb.SharedView.format_date(@posts.date) %></h3>
+<div>
+<h1><%= @post.title %></h1>
+<%= MultirotorWeb.SharedView.format_date(@post.date) %>
+</div>
+<hr/>
+<figure class="post-background">
+   <%= @post.body %>
+</figure>
+
+<hr/>
+
+<h4>Your Answer</h4>
+<%= form_for @changeset, post_path(@conn, :answer, @post.id), fn f -> %>
+  <div class="form-group" >
+    <%= textarea f, :body, class: "form-control", rows: 8 %>  
+    <%= error_tag f, :body %>
+  </div>
+
+  <%= submit "Submit your answer", class: "btn btn-primary pull-right"%>
+<% end %>

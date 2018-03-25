@@ -22,6 +22,7 @@ defmodule MultirotorWeb.Router do
     get "post/new", PostController, :create 
     post "posts/new", PostController, :add
     get "posts/:id", PostController, :show
+    post "posts/:id", PostController, :answer
 
 
     get "/user", UserController, :show
@@ -33,6 +34,7 @@ defmodule MultirotorWeb.Router do
   scope "/sessions", MultirotorWeb do
     pipe_through [:browser]
     get "/new", SessionsController, :new
+    get "/delete", SessionsController, :delete
     post "/identity/callback", SessionsController,  
                                      :identity_callback
   end

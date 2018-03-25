@@ -13,6 +13,13 @@ defmodule MultirotorWeb.SessionsController do
     |> authenticated(MultirotorUsers.Users.authenticate auth)
   end
 
+  def delete(conn, _params) do
+    conn = delete_session(conn,:current_user)
+    render conn, "new.html", callback_url: Helpers.callback_url(conn)
+  end
+
+
+
   defp authenticated(conn, {:ok, user}) do
     conn
     |> put_flash(:info, "Successfully authenticated.")
@@ -25,5 +32,6 @@ defmodule MultirotorWeb.SessionsController do
     |> put_flash(:error, error)
     |> redirect(to: "/sessions/new")
   end
+
 
 end

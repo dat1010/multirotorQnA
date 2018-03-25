@@ -5,7 +5,8 @@ defmodule MultirotorWeb.PostController do
 
   def show(conn, %{"id" => id}) do
     post = Multirotor.PostQueries.get_by_id(id)
-    render conn, "details.html", posts: post
+    changeset = Multirotor.Posts.changeset(%Multirotor.Posts{}, %{type: "answer"})
+    render conn, "details.html", post: post, changeset: changeset
   end
 
   def list(conn, _params) do
@@ -40,6 +41,9 @@ defmodule MultirotorWeb.PostController do
     end
   end
 
- 
+  def answer(conn, %{"posts" => posts}) do
 
+  end
+
+ 
 end
