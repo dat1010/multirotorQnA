@@ -9,22 +9,22 @@ defmodule MultirotorWeb.PostController do
     render conn, "details.html", post: post, changeset: changeset
   end
 
-  def list(conn, _params) do
-    post_list = Multirotor.PostQueries.get_all
-    render conn, "list.html", posts: post_list
+  def index(conn, _params) do
+    post_index = Multirotor.PostQueries.get_all
+    render conn, "list.html", posts: post_index
   end
 
 
-  def create(conn, %{errors: errors}) do
+  def new(conn, %{errors: errors}) do
     render conn, "create.html", changeset: errors
   end
 
-  def create(conn, _params) do
+  def new(conn, _params) do
     changeset = Multirotor.Posts.changeset(%Multirotor.Posts{}, %{})
     render conn, "create.html", changeset: changeset
   end
 
-  def add(conn, %{"posts" => posts}) do
+  def create(conn, %{"posts" => posts}) do
     #posts = Map.put(posts, :date, "2017-08-31 09:00:00") 
 
     #Need to find a better way to do this. Maybe a function
@@ -37,7 +37,7 @@ defmodule MultirotorWeb.PostController do
 
     case Multirotor.PostQueries.create changeset do
       {:ok, %{id: id}} -> redirect conn, to: post_path(conn, :show, id)
-      {:error, reasons} -> create conn, %{errors: reasons}
+      {:error, reasons} -> new conn, %{errors: reasons}
     end
   end
 

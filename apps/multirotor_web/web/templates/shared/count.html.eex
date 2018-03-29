@@ -1,1 +1,1 @@
-<h3>Total Count: <%= Enum.count @list %></h3>
+<h3>Total Count: <%= Enum.count @index %></h3>
