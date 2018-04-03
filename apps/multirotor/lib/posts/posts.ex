@@ -21,7 +21,7 @@ defmodule Multirotor.Posts do
   def changeset(post, params \\ %{}) do
     post
     |> cast(params, [:title, :body, :votes, :date, :views, :userid, :type])
-        |> validate_required([:title, :body, :date, :userid, :type])
+    |> validate_required([:title, :body, :date, :userid, :type])
     #|> validate_required(@required_fields)
   end
 #|> validate_change(:date, &must_be_future/2)
