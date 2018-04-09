@@ -6,16 +6,16 @@ defmodule MultirotorWeb.UserController do
     render conn, "user.html"
   end 
 
-  def create(conn, %{errors: errors}) do
+  def new(conn, %{errors: errors}) do
     render conn, "create.html", changeset: errors
   end
 
-  def create(conn, _params) do
+  def new(conn, _params) do
     changeset = MultirotorUsers.Users.changeset(%MultirotorUsers.Users{},%{})
     render conn, "create.html", changeset: changeset
   end
 
-  def add(conn, %{"users" => user}) do
+  def create(conn, %{"users" => user}) do
     MultirotorUsers.Users.changeset(%MultirotorUsers.Users{}, user)
     |> MultirotorUsers.UserQueries.create
     render conn, "user.html"

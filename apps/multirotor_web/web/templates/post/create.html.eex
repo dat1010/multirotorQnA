@@ -1,5 +1,5 @@
 <h1> Ask Question </h1>
-<%= form_for @changeset, post_path(@conn, :add), fn f -> %>
+<%= form_for @changeset, post_path(@conn, :new), fn f -> %>
   <div class="form-group" >
     <%= label f, :title, "Title" %>
     <%= text_input f, :title, class: "form-control"%>

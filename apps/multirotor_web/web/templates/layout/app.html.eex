@@ -15,13 +15,13 @@
     <div class="container">
       <ul class="nav nav-pills">
         <li><a href="/">Home</a></li>
-        <li><a href="<%= post_path(@conn, :list) %>">Questions</a></li>
+        <li><a href="<%= post_path(@conn, :index) %>">Questions</a></li>
         <%= if Plug.Conn.get_session(@conn, :current_user) do %>
             <li><a href="/user">Profile</a></li>
             <li><a href="<%= sessions_path(@conn, :delete) %>">Logout</a></li>
         <% else %>                  
           <li><a href="/sessions/new">Login</a></li>
-          <li><a href="<%= user_path(@conn, :add) %>">Sign Up</a></li>
+          <li><a href="<%= user_path(@conn, :new) %>">Sign Up</a></li>
         <% end %>
     </ul>
     </div>
