@@ -12,7 +12,7 @@ defmodule Multirotor.Posts do
     field :userid, :integer
     field :type, :integer
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(title,body,date,userid,type)a
