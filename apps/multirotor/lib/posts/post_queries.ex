@@ -2,18 +2,29 @@ defmodule Multirotor.PostQueries do
   import Ecto.Query
 
   alias Multirotor.{Repo, Posts}
+  alias Multirotor.{Repo, PostsMapping}
 
   def any do
     Repo.one(from e in Posts, select: count(e.id)) != 0
   end
 
   def get_all do
-    Repo.all(from Posts)
+    query = from p in Posts,
+            where: p.type == 1
+    Repo.all(query)
   end
 
   def get_top(count) do
     query = from p in Posts,
+            where: p.type == 1,
             order_by: [desc: :inserted_at], limit: ^count
+    Repo.all(query)
+  end
+
+  def get_answers(questionid) do
+    query = from p in Posts,
+      inner_join: pm in PostsMapping, on: pm.answerid == p.id,
+      where: pm.questionid == ^questionid
     Repo.all(query)
   end
 
