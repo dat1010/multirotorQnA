@@ -26,7 +26,6 @@ defmodule MultirotorWeb.PostController do
 
   def create(conn, %{"posts" => posts}) do
     #posts = Map.put(posts, :date, "2017-08-31 09:00:00") 
-
     #Need to find a better way to do this. Maybe a function
     posts = Map.put(posts, "date", Ecto.DateTime.utc) 
     posts = Map.put(posts, "type", 1)
@@ -42,8 +41,23 @@ defmodule MultirotorWeb.PostController do
   end
 
   def answer(conn, %{"posts" => posts}) do
+    #posts = Map.put(posts, :date, "2017-08-31 09:00:00") 
+
+    #Need to find a better way to do this. Maybe a function
+    posts = Map.put(posts, "date", Ecto.DateTime.utc) 
+    posts = Map.put(posts, "type", 2)
+    current_user = get_session(conn, :current_user)
+    posts = Map.put(posts, "userid", current_user.id)
+    
+    changeset = Multirotor.Posts.answer_changeset(%Multirotor.Posts{}, posts)
+    case Multirotor.PostQueries.create changeset do
+      {:ok, %{id: id}} -> redirect conn, to: post_path(conn, :show, id)
+      {:error, reasons} -> new conn, %{errors: reasons}
+    end
 
   end
 
+  #Once the answer is saved in Posts table. I need to save that id and the questionID
+  #in the post types table. This will be a relation table to map the questions with the answers
  
 end
