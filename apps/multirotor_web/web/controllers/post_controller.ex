@@ -6,14 +6,15 @@ defmodule MultirotorWeb.PostController do
   def show(conn, %{"id" => id}) do
     post = Multirotor.PostQueries.get_by_id(id)
     changeset = Multirotor.Posts.changeset(%Multirotor.Posts{}, %{type: "answer"})
-    render conn, "details.html", post: post, changeset: changeset
+    answerList = Multirotor.PostQueries.get_answers(id)
+
+    render conn, "details.html", post: post, changeset: changeset, answerList: answerList
   end
 
   def index(conn, _params) do
     post_index = Multirotor.PostQueries.get_all
     render conn, "list.html", posts: post_index
   end
-
 
   def new(conn, %{errors: errors}) do
     render conn, "create.html", changeset: errors
@@ -47,17 +48,21 @@ defmodule MultirotorWeb.PostController do
     posts = Map.put(posts, "date", Ecto.DateTime.utc) 
     posts = Map.put(posts, "type", 2)
     current_user = get_session(conn, :current_user)
-    posts = Map.put(posts, "userid", current_user.id)
     
+    posts = Map.put(posts, "userid", current_user.id)
     changeset = Multirotor.Posts.answer_changeset(%Multirotor.Posts{}, posts)
     case Multirotor.PostQueries.create changeset do
-      {:ok, %{id: id}} -> redirect conn, to: post_path(conn, :show, id)
-      {:error, reasons} -> new conn, %{errors: reasons}
+      {:ok, %{id: id}} ->
+        questionid = Map.get(conn.path_params,"id")
+        mappingChangeset = Multirotor.PostsMapping.changeset(%Multirotor.PostsMapping{}, %{answerid: id, questionid: questionid})
+        case Multirotor.PostsMappingQuieries.create mappingChangeset do
+          {:ok, %{id: id}} ->
+            redirect conn, to: post_path(conn, :show, questionid)
+          {:error, reasons} -> new conn, %{errors: reasons}
+        end  
+      {:error, reasons} -> 
+        new conn, %{errors: reasons}
     end
-
   end
 
-  #Once the answer is saved in Posts table. I need to save that id and the questionID
-  #in the post types table. This will be a relation table to map the questions with the answers
- 
 end
