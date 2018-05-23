@@ -7,6 +7,20 @@
    <%= @post.body %>
 </figure>
 
+<br/>
+<hr/>
+
+<div class="list-group">
+  <%= for a <- @answerList do %>
+    <h3>Answer</h3>
+    <span>
+      <span class="test-muted"><%= a.body %></span>
+    </span>
+
+    <%= MultirotorWeb.SharedView.format_date(a.date) %>
+  <% end %>
+</div>
+
 <hr/>
 
 <h4>Your Answer</h4>

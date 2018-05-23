@@ -31,6 +31,7 @@ defmodule Multirotor.Posts do
     |> validate_required([ :body, :date, :userid, :type])
   end
 
+
  #|> validate_change(:date, &must_be_future/2)
  #For example purposes
   
