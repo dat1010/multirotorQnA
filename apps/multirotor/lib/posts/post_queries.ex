@@ -21,17 +21,9 @@ defmodule Multirotor.PostQueries do
     Repo.all(query)
   end
 
-  def get_answers(questionid) do
-    query = from p in Posts,
-      inner_join: pm in PostsMapping, on: pm.answerid == p.id,
-      where: pm.questionid == ^questionid
-    Repo.all(query)
-  end
-
   def get_all_by_userid(userid) do
     query = from p in Posts,
             where: p.userid == ^userid
-
     Repo.all(query)
   end
 
