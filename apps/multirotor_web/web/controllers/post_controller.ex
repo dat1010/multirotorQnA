@@ -6,7 +6,7 @@ defmodule MultirotorWeb.PostController do
   def show(conn, %{"id" => id}) do
     post = Multirotor.PostQueries.get_by_id(id)
     changeset = Multirotor.Posts.changeset(%Multirotor.Posts{}, %{type: "answer"})
-    answerList = Multirotor.PostQueries.get_answers(id)
+    answerList = Multirotor.PostsMappingQueries.get_answers(id)
 
     render conn, "details.html", post: post, changeset: changeset, answerList: answerList
   end
@@ -26,15 +26,9 @@ defmodule MultirotorWeb.PostController do
   end
 
   def create(conn, %{"posts" => posts}) do
-    #posts = Map.put(posts, :date, "2017-08-31 09:00:00") 
-    #Need to find a better way to do this. Maybe a function
-    posts = Map.put(posts, "date", Ecto.DateTime.utc) 
-    posts = Map.put(posts, "type", 1)
     current_user = get_session(conn, :current_user)
-    posts = Map.put(posts, "userid", current_user.id)
-    
-    changeset = Multirotor.Posts.changeset(%Multirotor.Posts{}, posts)
 
+    changeset = Multirotor.Posts.map_answer(posts, current_user.id, 1)
     case Multirotor.PostQueries.create changeset do
       {:ok, %{id: id}} -> redirect conn, to: post_path(conn, :show, id)
       {:error, reasons} -> new conn, %{errors: reasons}
@@ -42,20 +36,15 @@ defmodule MultirotorWeb.PostController do
   end
 
   def answer(conn, %{"posts" => posts}) do
-    #posts = Map.put(posts, :date, "2017-08-31 09:00:00") 
-
-    #Need to find a better way to do this. Maybe a function
-    posts = Map.put(posts, "date", Ecto.DateTime.utc) 
-    posts = Map.put(posts, "type", 2)
     current_user = get_session(conn, :current_user)
-    
-    posts = Map.put(posts, "userid", current_user.id)
-    changeset = Multirotor.Posts.answer_changeset(%Multirotor.Posts{}, posts)
+
+    changeset = Multirotor.Posts.map_answer(posts,current_user.id,2)
+    #TODO how to clean up this nested case statment
     case Multirotor.PostQueries.create changeset do
       {:ok, %{id: id}} ->
         questionid = Map.get(conn.path_params,"id")
         mappingChangeset = Multirotor.PostsMapping.changeset(%Multirotor.PostsMapping{}, %{answerid: id, questionid: questionid})
-        case Multirotor.PostsMappingQuieries.create mappingChangeset do
+        case Multirotor.PostsMappingQueries.create mappingChangeset do
           {:ok, %{id: id}} ->
             redirect conn, to: post_path(conn, :show, questionid)
           {:error, reasons} -> new conn, %{errors: reasons}
