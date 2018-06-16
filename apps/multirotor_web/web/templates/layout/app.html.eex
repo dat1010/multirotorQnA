@@ -12,25 +12,33 @@
   </head>
 
   <body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
-      <ul class="nav nav-pills">
-        <li><a href="/">Home</a></li>
-        <li><a href="<%= post_path(@conn, :index) %>">Questions</a></li>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="navbar-item"><a class="nav-link" href="<%= post_path(@conn, :index) %>">Questions</a></li>
+      </ul>
+      <ul class="navbar-nav">
         <%= if Plug.Conn.get_session(@conn, :current_user) do %>
-            <li><a href="/user">Profile</a></li>
-            <li><a href="<%= sessions_path(@conn, :delete) %>">Logout</a></li>
+            <li class="navbar-item"><a class="nav-link" href="/user">Profile</a></li>
+            <li class="navbar-item"><a class="nav-link" href="<%= sessions_path(@conn, :delete) %>">Logout</a></li>
         <% else %>                  
-          <li><a href="/sessions/new">Login</a></li>
-          <li><a href="<%= user_path(@conn, :new) %>">Sign Up</a></li>
+            <li class="navbar-item"><a class="nav-link" href="/sessions/new">Login</a></li>
+            <li class="navbar-item"><a class="nav-link" href="<%= user_path(@conn, :new) %>">Sign Up</a></li>
         <% end %>
-    </ul>
+      </ul>
+      </div>
     </div>
+  </nav>
+    <br/>
                               
     <div class="container">
       <header class="header">
         <span class="logo"></span>
       </header>
-
+      
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>

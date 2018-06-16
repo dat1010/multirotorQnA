@@ -19,7 +19,6 @@ defmodule MultirotorWeb.SessionsController do
   end
 
 
-
   defp authenticated(conn, {:ok, user}) do
     conn
     |> put_flash(:info, "Successfully authenticated.")

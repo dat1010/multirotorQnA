@@ -7,7 +7,7 @@ exports.config = {
     stylesheets: {
       joinTo: "css/app.css",
       order: {
-        after: ["web/static/css/app.scss"] // concat app.css last
+        after: ["web/static/css/app.css"] // concat app.css last
       }
     },
     templates: {
@@ -39,10 +39,10 @@ exports.config = {
       "fonts": ["node_modules/bootstrap-sass/assets/fonts/bootstrap"] // copy node_modules/bootstrap-sass/assets/fonts/bootstrap/* to priv/static/fonts/
     },
     sass: {
-      options: {
-        includePaths: ["node_modules/bootstrap-sass/assets/stylesheets"], // tell sass-brunch where to look for files to @import
-        precision: 8 // minimum precision required by bootstrap-sass 
-      }
+	options: {
+	        includePaths: ["node_modules/bootstrap/scss"], // Tell sass-brunch where to look for files to @import
+	        precision: 8 // Minimum precision required by bootstrap-sass
+	      }
     }
   },
   
@@ -53,11 +53,13 @@ exports.config = {
   },
   
   npm: {
-    enabled: true,
-    globals: { // bootstrap-sass' JavaScript requires both '$' and 'jQuery' in global scope
-      $: 'jquery',
-      jQuery: 'jquery',
-      bootstrap: 'bootstrap-sass' // require bootstrap-sass' JavaScript globally
-    }
+	enabled: true,
+	globals: {
+	$: 'jquery',
+	jQuery: 'jquery',
+	Popper: 'popper.js',
+	Tether: 'tether',
+	bootstrap: 'bootstrap'
+}
   }
 }
