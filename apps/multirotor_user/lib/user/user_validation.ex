@@ -1,4 +1,4 @@
-defmodule MultirotorUsers.UserValidation do
+defmodule MultirotorUser.UserValidation do
   import Ecto.Changeset
 
   def validate_password(changeset, field, options \\ []) do
