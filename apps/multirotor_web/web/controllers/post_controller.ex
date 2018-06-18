@@ -5,8 +5,8 @@ defmodule MultirotorWeb.PostController do
 
   def show(conn, %{"id" => id}) do
     post = Multirotor.PostQueries.get_by_id(id)
-    changeset = Multirotor.Posts.changeset(%Multirotor.Posts{}, %{type: "answer"})
-    answerList = Multirotor.PostsMappingQueries.get_answers(id)
+    changeset = Multirotor.Post.changeset(%Multirotor.Post{}, %{type: "answer"})
+    answerList = Multirotor.PostMappingQueries.get_answers(id)
 
     render conn, "details.html", post: post, changeset: changeset, answerList: answerList
   end
@@ -21,14 +21,14 @@ defmodule MultirotorWeb.PostController do
   end
 
   def new(conn, _params) do
-    changeset = Multirotor.Posts.changeset(%Multirotor.Posts{}, %{})
+    changeset = Multirotor.Post.changeset(%Multirotor.Post{}, %{})
     render conn, "create.html", changeset: changeset
   end
 
   def create(conn, %{"posts" => posts}) do
     current_user = get_session(conn, :current_user)
 
-    changeset = Multirotor.Posts.map_answer(posts, current_user.id, 1)
+    changeset = Multirotor.Post.map_answer(posts, current_user.id, 1)
     case Multirotor.PostQueries.create changeset do
       {:ok, %{id: id}} -> redirect conn, to: post_path(conn, :show, id)
       {:error, reasons} -> new conn, %{errors: reasons}
@@ -38,13 +38,13 @@ defmodule MultirotorWeb.PostController do
   def answer(conn, %{"posts" => posts}) do
     current_user = get_session(conn, :current_user)
 
-    changeset = Multirotor.Posts.map_answer(posts,current_user.id,2)
+    changeset = Multirotor.Post.map_answer(posts,current_user.id,2)
     #TODO how to clean up this nested case statment
     case Multirotor.PostQueries.create changeset do
       {:ok, %{id: id}} ->
         questionid = Map.get(conn.path_params,"id")
-        mappingChangeset = Multirotor.PostsMapping.changeset(%Multirotor.PostsMapping{}, %{answerid: id, questionid: questionid})
-        case Multirotor.PostsMappingQueries.create mappingChangeset do
+        mappingChangeset = Multirotor.PostMapping.changeset(%Multirotor.PostMapping{}, %{answerid: id, questionid: questionid})
+        case Multirotor.PostMappingQueries.create mappingChangeset do
           {:ok, %{id: id}} ->
             redirect conn, to: post_path(conn, :show, questionid)
           {:error, reasons} -> new conn, %{errors: reasons}

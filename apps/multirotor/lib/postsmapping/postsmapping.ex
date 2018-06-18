@@ -1,4 +1,4 @@
-defmodule Multirotor.PostsMapping do
+defmodule Multirotor.PostMapping do
   use Ecto.Schema
 
   import Ecto.Changeset

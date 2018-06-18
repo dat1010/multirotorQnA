@@ -1,10 +1,10 @@
-defmodule MultirotorUsers.UserQueries do
+defmodule MultirotorUser.UserQueries do
   import Ecto.Query
 
-  alias MultirotorUsers.{Repo, Users}
+  alias MultirotorUser.{Repo, User}
 
   def get_by_id(id) do
-    Repo.get(Users, id)
+    Repo.get(User, id)
   end
 
   def create(user) do
@@ -12,7 +12,7 @@ defmodule MultirotorUsers.UserQueries do
   end
 
   def get_by_email(email) do
-    Repo.get_by(Users, email: email)
+    Repo.get_by(User, email: email)
   end
 
 

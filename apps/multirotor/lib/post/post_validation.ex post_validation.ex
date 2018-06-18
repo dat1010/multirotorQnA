@@ -1,4 +1,4 @@
-defmodule Multirotor.PostsValidation do
+defmodule Multirotor.PostValidation do
 
   def must_be_future(_, value) do
     Ecto.DateTime.compare(value, Ecto.DateTime.utc)

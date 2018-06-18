@@ -1,4 +1,4 @@
-defmodule Multirotor.Posts do
+defmodule Multirotor.Post do
   use Ecto.Schema
 
   import Ecto.Changeset
@@ -37,8 +37,8 @@ defmodule Multirotor.Posts do
     posts = Map.put(posts, "type", type)
     posts = Map.put(posts, "userid", user_id)
     case type do
-      1 -> changeset(%Multirotor.Posts{}, posts)
-      2 -> answer_changeset(%Multirotor.Posts{}, posts)
+      1 -> changeset(%Multirotor.Post{}, posts)
+      2 -> answer_changeset(%Multirotor.Post{}, posts)
     end
   end
 

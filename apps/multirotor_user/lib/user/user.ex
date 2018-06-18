@@ -1,4 +1,4 @@
-defmodule MultirotorUsers.Users do
+defmodule MultirotorUser.User do
   use Ecto.Schema
 
   import Ecto.Changeset
@@ -16,6 +16,6 @@ defmodule MultirotorUsers.Users do
   def changeset(user, params \\ %{}) do
     user
     |> cast(params, [:name, :email, :password])
-    |> MultirotorUsers.UserValidation.put_pass_hash()
+    |> MultirotorUser.UserValidation.put_pass_hash()
   end
  end

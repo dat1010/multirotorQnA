@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure your application as:
 #
-#     config :multirotor_users, key: :value
+#     config :multirotor_user, key: :value
 #
 # and access this configuration in your application as:
 #
-#     Application.get_env(:multirotor_users, :key)
+#     Application.get_env(:multirotor_user, :key)
 #
 # You can also configure a 3rd-party app:
 #
@@ -28,13 +28,13 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
-config :multirotor_users, MultirotorUsers.Repo,
+config :multirotor_user, MultirotorUser.Repo,
     adapter: Ecto.Adapters.Postgres,
     database: "Multirotor",
     username: "postgres",
     password: System.get_env("POSTGRESQL_PASSWORD")
 
-config :multirotor_users, ecto_repos: [MultirotorUsers.Repo]
+config :multirotor_user, ecto_repos: [MultirotorUser.Repo]
 
 config :ueberauth, Ueberauth,
   providers: [

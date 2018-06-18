@@ -44,7 +44,7 @@ defmodule MultirotorWeb.Mixfile do
       {:cowboy, "~> 1.0"},
       {:phoenix_ecto, "~> 3.3"},
       {:multirotor, in_umbrella: true},
-      {:multirotor_users, in_umbrella: true},
+      {:multirotor_user, in_umbrella: true},
       {:ueberauth, "~> 0.5.0"},
       {:ueberauth_identity, "~> 0.2.3"}
     ]
