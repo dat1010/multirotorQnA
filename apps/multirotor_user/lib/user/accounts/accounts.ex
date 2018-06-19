@@ -1,5 +1,5 @@
-defmodule MultirotorUser.UserQueries do
-  import Ecto.Query
+defmodule MultirotorUser.Accounts do
+import Ecto.Query
 
   alias MultirotorUser.{Repo, User}
 
@@ -8,13 +8,19 @@ defmodule MultirotorUser.UserQueries do
   end
 
   def create(user) do
-    Repo.insert(user)
+    %User{}
+    |> User.changeset(user)
+    |> Repo.insert(user)
   end
 
   def get_by_email(email) do
     Repo.get_by(User, email: email)
   end
 
+  def change_user() do
+    %User{}
+    |> User.changeset(%{})
+  end
 
 
 end

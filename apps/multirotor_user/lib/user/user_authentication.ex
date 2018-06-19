@@ -3,7 +3,7 @@ defmodule MultirotorUser.UserAuthentication do
 
 
   def authenticate(%Auth{provider: :identity} = auth) do
-    MultirotorUser.UserQueries.get_by_email(auth.uid)
+    MultirotorUser.Accounts.get_by_email(auth.uid)
     |> Comeonin.Bcrypt.check_pass(Map.get(auth.extra.raw_info,"password"))
   end
 

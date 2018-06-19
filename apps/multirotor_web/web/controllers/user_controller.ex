@@ -1,8 +1,9 @@
 defmodule MultirotorWeb.UserController do
   use MultirotorWeb.Web, :controller
 
+  alias MultirotorUser.Accounts
+
   def show(conn, _params) do
-    #text conn, "create"
     render conn, "user.html"
   end 
 
@@ -11,13 +12,12 @@ defmodule MultirotorWeb.UserController do
   end
 
   def new(conn, _params) do
-    changeset = MultirotorUser.User.changeset(%MultirotorUser.User{},%{})
+    changeset =  Accounts.change_user
     render conn, "create.html", changeset: changeset
   end
 
   def create(conn, %{"users" => user}) do
-    MultirotorUser.User.changeset(%MultirotorUser.User{}, user)
-    |> MultirotorUser.UserQueries.create
+    Accounts.create(user)
     render conn, "user.html"
   end
 
