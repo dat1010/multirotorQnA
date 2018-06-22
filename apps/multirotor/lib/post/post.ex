@@ -15,8 +15,8 @@ defmodule Multirotor.Post do
     timestamps()
   end
 
-  @required_fields ~w(title,body,date,userid,type)a
-  @optional_fields ~w(votes,views)a
+  @required_fields ~w{title body date userid type}a
+  @optional_fields ~w{votes views}a
 
   def changeset(post, params \\ %{}) do
     post
