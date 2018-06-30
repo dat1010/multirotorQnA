@@ -1,6 +1,6 @@
-defmodule MultirotorUsers do
+defmodule MultirotorUser do
   @moduledoc """
-  Documentation for MultirotorUsers.
+  Documentation for MultirotorUser.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule MultirotorUsers do
 
   ## Examples
 
-      iex> MultirotorUsers.hello
+      iex> MultirotorUser.hello
       :world
 
   """

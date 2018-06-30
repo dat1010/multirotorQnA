@@ -1,9 +1,9 @@
-defmodule MultirotorUsers.Mixfile do
+defmodule MultirotorUser.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :multirotor_users,
+      app: :multirotor_user,
       version: "0.1.0",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
@@ -19,7 +19,7 @@ defmodule MultirotorUsers.Mixfile do
   def application do
     [
       extra_applications: [:logger, :postgrex, :ecto, :ueberauth, :ueberauth_identity, :comeonin, :bcrypt_elixir],
-      mod: {MultirotorUsers.Application, []}
+      mod: {MultirotorUser.Application, []}
     ]
   end
 
