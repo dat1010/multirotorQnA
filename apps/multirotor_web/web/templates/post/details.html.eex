@@ -24,7 +24,7 @@
 <hr/>
 
 <h4>Your Answer</h4>
-<%= form_for @changeset, post_path(@conn, :answer, @post.id), fn f -> %>
+<%= form_for @changeset, post_path(@conn, :answer, @post), fn f -> %>
   <div class="form-group" >
     <%= textarea f, :body, class: "form-control", rows: 8 %>  
     <%= error_tag f, :body %>
