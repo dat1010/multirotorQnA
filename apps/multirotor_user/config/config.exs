@@ -32,7 +32,7 @@ config :multirotor_user, MultirotorUser.Repo,
     adapter: Ecto.Adapters.Postgres,
     database: "Multirotor",
     username: "davidtanner",
-    password: "sk8ing4ever"
+    password: System.get_env("POSTGRESQL_PASSWORD")
 
 config :multirotor_user, ecto_repos: [MultirotorUser.Repo]
 
