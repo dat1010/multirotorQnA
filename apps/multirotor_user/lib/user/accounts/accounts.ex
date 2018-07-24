@@ -10,7 +10,7 @@ import Ecto.Query
   def create(user) do
     %User{}
     |> User.changeset(user)
-    |> Repo.insert(user)
+    |> Repo.insert
   end
 
   def get_by_email(email) do

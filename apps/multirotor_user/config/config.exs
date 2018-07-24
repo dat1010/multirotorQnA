@@ -31,8 +31,8 @@ use Mix.Config
 config :multirotor_user, MultirotorUser.Repo,
     adapter: Ecto.Adapters.Postgres,
     database: "Multirotor",
-    username: "postgres",
-    password: System.get_env("POSTGRESQL_PASSWORD")
+    username: "davidtanner",
+    password: "sk8ing4ever"
 
 config :multirotor_user, ecto_repos: [MultirotorUser.Repo]
 
