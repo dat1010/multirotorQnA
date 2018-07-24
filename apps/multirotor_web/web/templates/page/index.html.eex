@@ -1,15 +1,28 @@
-
-<%= unless Plug.Conn.get_session(@conn, :current_user) do %>
-  <div class="jumbotron">
-    <h2>MultirotorQnA</h2>
-    <p class="lead">Ask and you will receive.<br/>This is a drone QnA forum where as a community we can ask and answer each others questions.</p>
+<div class="form-group">
+  <div class="row">
+    <div class="col">
+    <%= unless Plug.Conn.get_session(@conn, :current_user) do %>
+      <div class="jumbotron">
+        <h2>MultirotorQnA</h2>
+        <p class="lead">Ask and you will receive.<br/>This is a drone QnA forum where as a community we can ask and answer each others questions.</p>
+      </div>
+    <% end %>
+    </div>
   </div>
-<% end %>
 
+  <div class="row bottom-buffer">
+    <div class="col">
+      <a href="<%= post_path(@conn, :new) %>" class="btn btn-primary float-right">Ask Question</a>
+    </div>
+  </div>
 
-<div class="list-group">
-  <%= for p <- @posts do %>
-    <%= render MultirotorWeb.SharedView, "summary.html", post: p, conn: @conn %>
-  <% end %>
+  <div class="row">
+    <div class="col">
+      <div class="list-group">
+        <%= for p <- @posts do %>
+          <%= render MultirotorWeb.SharedView, "summary.html", post: p, conn: @conn %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-

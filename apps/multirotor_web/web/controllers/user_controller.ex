@@ -16,7 +16,7 @@ defmodule MultirotorWeb.UserController do
     render conn, "create.html", changeset: changeset
   end
 
-  def create(conn, %{"users" => user}) do
+  def create(conn, %{"user" => user}) do
     Accounts.create(user)
     render conn, "user.html"
   end
